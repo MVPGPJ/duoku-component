@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<link rel="stylesheet" href="../src/duoku-slider.css">
+    <script src="../src/duoku-slider.js"></script>-->
+
+    <script src="../dist/duoku-slider.min.js"></script>
+
+</head>
+<body>
+<div id="container" class="duoku-slider-container">
+    <img src="img/1.jpg" alt="1" />
+    <img src="img/2.jpg" alt="2" />
+    <img src="img/3.jpg" alt="3" />
+    <img src="img/4.jpg" alt="4" />
+    <img src="img/5.jpg" alt="5" />
+</div>
+
+<script type="text/javascript">
+    DUOKU.duokuSlider({
+        container:'container',
+        autoPlay:true
+    });
+</script>
+</body>
+</html>

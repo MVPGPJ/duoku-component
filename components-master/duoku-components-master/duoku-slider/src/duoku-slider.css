@@ -1,0 +1,73 @@
+
+.duoku-slider-container {
+    position: relative;
+    width: 1000px;
+    height: 400px;
+    overflow: hidden;
+}
+
+#duoku-slider-imgs {
+    position: absolute;
+    z-index: 1;
+    overflow: hidden;
+}
+#imgs-wrapper {overflow: hidden;position: relative; margin: 0 auto;}
+#duoku-slider-imgs img {
+    float: left;
+    display: inline;
+    margin: 0px;
+}
+
+#duoku-slider-dot {
+    position: absolute;
+    margin: auto;
+    bottom: 20px;
+    z-index: 2;
+    height: 10px;
+    width: 345px;
+}
+
+#duoku-slider-dot span {
+    float: left;
+    margin-right: 5px;
+    width: 23px;
+    height: 23px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 40px;
+    background: url("../test/img/start-1.png");
+}
+
+#duoku-slider-dot .on {
+    background: url("../test/img/start-0.png");
+}
+
+.duoku-slider-arrow {
+    position: absolute;
+    z-index: 2;
+   /* display: none;*/
+    width: 40px;
+    line-height: 100px;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    color: #fff;
+    cursor: pointer;
+}
+
+.duoku-slider-arrow:hover {
+}
+
+#container:hover .duoku-slider-arrow {
+    display: block;
+}
+
+#duoku-slider-prev {
+    left: 60px;
+}
+
+#duoku-slider-next {
+    right: 20px;
+}

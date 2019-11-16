@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../src/duoku-slider.css">
+    <script src="../src/duoku-slider.js"></script>
+
+   <!-- <script src="../dist/duoku-slider.min.js"></script>-->
+<style>
+    #container {
+        width: 1100px;
+        margin: 0 auto;
+        height: 488px;
+    }
+
+</style>
+</head>
+<body>
+<div id="container" class="duoku-slider-container" >
+    <img src="img/slider-1.png" height="438" width="800" alt="1" />
+    <img src="img/slider-2.png" height="438" width="800" alt="1" />
+    <img src="img/slider-3.png" height="438" width="800" alt="1" />
+    <img src="img/slider-4.png" height="438" width="800" alt="1" />
+</div>
+
+<script type="text/javascript">
+    //DUOKU.Slider({
+    duokuSlider({
+        container:'container',
+        imgWidth:800,
+        imgHeight:438,
+        selectedImgUrl:'img/start-0.png',
+        unselectedImgUrl:'img/start-1.png',
+        preHTML:'<img style="margin-left: -100px;" src="img/pre.png" alt="1" \/>',
+        nextHTML:'<img src="img/next.png" alt="1" \/>',
+        autoPlay:true
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "presets": [
+    ["env", {
+      //"modules": false,
+      "targets": {
+        "targets:": { "node": "6" },// change this to your node version
+        "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
+      }
+    }],
+    "stage-2"
+  ],
+  "plugins": ["transform-vue-jsx", "transform-runtime"]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "webpack-phpcms-update-plugin",
+  "version": "1.0.1",
+  "description": "webpack phpcms update plugin",
+  "main": "main.js",
+  "dependencies": {
+    "log-util": "^1.2.0",
+    "request": "^2.87.0",
+    "underscore": "^1.9.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "webpack",
+    "phpcms",
+    "update",
+    "plugin"
+  ],
+  "author": "liutinghai",
+  "license": "ISC"
+}

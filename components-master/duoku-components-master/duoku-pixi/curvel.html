@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="lib/Charm.js"></script>
+  <script src="lib/pixi4.8.2.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script>
+  var $container = document.getElementById('app');
+  var app = new PIXI.Application(600, 400, {backgroundColor : 0x1099bb});
+  $container.appendChild(app.view);
+  var c = new Charm(PIXI);
+  //需要加载的图片的地址
+  let imgURL = "./img/next.png";
+  //加载图像，加载完成后执行setup函数
+  PIXI.loader.add(imgURL).load(setup);
+
+  function setup () {
+    let resources = PIXI.loader.resources;
+    let sprite = new PIXI.Sprite(resources[imgURL].texture);
+    app.stage.addChild(sprite);
+    sprite.position.set(50, 56)
+    let curvedWaypoints = [
+      [[10, 200],[200, 10],[400, 200]],
+      [[10, 200],[200, 400],[400, 400]]
+    ];
+
+    let spritePath = c.walkCurve(
+      sprite,                    //The sprite
+      curvedWaypoints,              //Array of curved waypoints
+      300,                          //Total duration, in frames
+      "smoothstep",                 //Easing type
+      true,                         //Should the path loop?
+      true,                         //Should the path yoyo?
+      1000                          //Delay in milliseconds between segments
+    );
+
+    sprite.anchor.set(0.5, 0.5);
+    //画出精灵的曲线移动路径
+    let bezierLine = new PIXI.Graphics();
+    bezierLine.lineStyle(2, 0x000000, 1);
+    bezierLine.moveTo(sprite.x, sprite.y);
+    bezierLine.bezierCurveTo(10, 200, 200, 10, 400, 200);
+    bezierLine.bezierCurveTo(10, 200, 200, 400, 400, 400);
+    app.stage.addChild(bezierLine);
+    //开始游戏循环
+    gameLoop();
+  }
+
+  // 将游戏的当前状态设置为play：
+  let state = play;
+  function gameLoop() {
+    // 循环调用gameLoop
+    requestAnimationFrame(gameLoop);
+    // 更新当前的游戏状态
+    c.update();
+    // 渲染舞台
+    app.renderer.render(app.stage);
+  }
+
+  //使精灵移动的函数
+  function play() { }
+
+</script>
+</body>
+</html>

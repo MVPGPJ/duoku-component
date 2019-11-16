@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no, minimal-ui">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>云想之歌</title>
+</head>
+<script>
+  (function(document, window) {
+    const docE = document.documentElement;
+    const resizeProp = 'orientationchange' in window ? 'orientationchange' : 'resize';
+    const resizeFunc = function() {
+      const clientWidth = docE.clientWidth;
+      clientWidth && (docE.style.fontSize = 75 * (clientWidth / 750) + 'px');
+    };
+
+    if (document.addEventListener) {
+      document.addEventListener('DOMContentLoaded', resizeFunc, false);
+      window.addEventListener(resizeProp, resizeFunc, false);
+    }
+  })(document, window);
+</script>
+<style>
+  *{
+    margin:0px;
+    padding:0px;
+  }
+  .header{
+    position: relative;
+    width: 10rem;
+    height: 17.78125rem;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url(http://img.m.duoku.com/cimages/img/24250/24250.jpg);
+  }
+  .header-nav{
+    position: absolute;
+    width: 10rem;
+    height: 1.5625rem;
+  }
+  .header-mast{
+    position: absolute;
+    width: 10rem;
+    height: 1.5625rem;
+    background: #ffffff;
+    opacity: 0.8;
+  }
+  .header-nav .nav-icon{
+    float: left;
+    width: 1.03125rem;
+    height: 1.03125rem;
+    margin: 0.28125rem;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url(http://img.m.duoku.com/cimages/img/24252/24252.png);
+  }
+  .header-nav .nav-info{
+    float: left;
+    height: 1.03125rem;
+    font-size: 0.375rem;
+    margin-top: 0.275rem;
+  }
+  .header-nav .nav-info .one{
+    color: #ec7386;
+    font-size: 0.375rem;
+  }
+  .header-nav .nav-info .two{
+    font-size: 0.28125rem;
+  }
+  .header-nav .nav-download{
+    position: absolute;
+    left: 6rem;
+    top: 0.3rem;
+    width: 2.31rem;
+    height: 1rem;
+    text-align: center;
+    line-height: 0.96875rem;
+    display: inline-block;
+    font-size: 0.53125rem;
+    color: #fff5c7;
+    background: #ec7386;
+  }
+  .header-nav .nav-download div{
+    position: relative;
+    left: 0.07rem;
+    top: 0.03rem;
+    width: 2.125rem;
+    height: 0.875rem;
+    border: 0.03rem solid #fff5c7;
+  }
+  .header-nav .nav-menu{
+    float: right;
+    width: 0.90625rem;
+    height: 0.5625rem;
+    margin: 0.375rem;
+    /* margin-right: 0.25625rem; */
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url(http://img.m.duoku.com/cimages/img/24251/24251.png);
+  }
+  .header-mute{
+    position: absolute;
+    top: 1.8rem;
+    right: 0.5rem;
+    width: 0.34375rem;
+    height: 0.34375rem;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url(http://img.m.duoku.com/cimages/img/24261/24261.png);
+  }
+  .sound-btn{
+    display: flex;
+    align-items: flex-end;
+    position: absolute;
+    top: 1.8rem;
+    right: 0.5rem;
+    width: 1rem;
+    height: 0.6rem;
+    cursor: pointer;
+  }
+  .sound-btn div{
+    width:0.06125rem;
+    margin-right:0.046875rem;
+    background-color:#5c1f74;
+    transform-origin:center bottom;
+  }
+  .sound-btn div:nth-child(1){
+    height: 0.0625rem;
+    animation-delay:.1s;
+  }
+  .sound-btn div:nth-child(2){
+    height: 0.125rem;
+    animation-delay:.4s;
+  }
+  .sound-btn div:nth-child(3){
+    height: 0.140625rem;
+    animation-delay:.2s;
+  }
+  .sound-btn div:nth-child(4){
+    height: 0.21875rem;
+    animation-delay:.3s;
+  }
+  .sound-btn div:nth-child(5){
+    height: 0.15625rem;
+    animation-delay:.5s;
+  }
+  .sound-play div{
+    animation:soundbtn 1s 0s ease infinite normal;
+  }
+  @keyframes soundbtn {
+    0%{
+      transform:scaleY(1);
+    }
+    50%{
+      transform:scaleY(1.5);
+    }
+    100%{
+      transform:scaleY(1);
+    }
+  }
+  .menu-list{
+    position: absolute;
+    top: 1.5625rem;
+    width: 10rem;
+    height: 0.78125rem;
+    color: #5c1f74;
+    font-size: 0.25rem;
+  }
+  .menu-list .menu-list-item{
+    list-style: none;
+    background: #eaeaea;
+    opacity: 0.6;
+    text-decoration: none;
+  }
+  .menu-list .list-index{
+    float: left;
+    width: 33%;
+    height: 0.78125rem;
+    text-align: center;
+    font-size: 0.375rem;
+    line-height: 0.78125rem;
+    border-right: 0.03125rem solid #ec7386;
+  }
+  .menu-list .list-intro{
+    float: left;
+    width: 33%;
+    height: 0.78125rem;
+    text-align: center;
+    font-size: 0.375rem;
+    line-height: 0.78125rem;
+    border-right: 0.03125rem solid #ec7386;
+  }
+  .menu-list .list-world{
+    float: left;
+    width: 33%;
+    height: 0.78125rem;
+    text-align: center;
+    font-size: 0.375rem;
+    line-height: 0.78125rem;
+  }
+  .header-button{
+    position: absolute;
+    top: 16.1875rem;
+    left: 2.09375rem;
+    width: 5.75rem;
+    height: 1rem;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url(http://img.m.duoku.com/cimages/img/24249/24249.png);
+  }
+  .header-button-text{
+    position: absolute;
+    top: 16.1875rem;
+    left: 2.09375rem;
+    width: 5.75rem;
+    height: 1rem;
+    line-height: 1.1rem;
+    font-size: 0.28125rem;
+    text-align: center;
+  }
+  .header-button-text .text-icon{
+    display: inline-block;
+    width: 0.40615rem;
+    height: 0.521875rem;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url(http://img.m.duoku.com/cimages/img/24253/24253.png);
+  }
+  .header-button-text .text-content{
+    color: #ffffff;
+  }
+
+  .dialog-mast{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #000000;
+    opacity: 0.8;
+    z-index: 1000;
+  }
+  .dialog-wrapper{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1001;
+  }
+  .dialog-wrapper .dialog-img{
+    position: absolute;
+    top: 6rem;
+    left: 0.8rem;
+    width: 8.03125rem;
+    height: 4.8125rem;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url(http://img.m.duoku.com/cimages/img/24275/24275.png);
+  }
+  .dialog-img .img-content{
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    text-align: center;
+    font-size: 0.375rem;
+    color: #ffb6c2;
+  }
+  .dialog-wrapper .close-btn{
+    position: absolute;
+    right: -0.8125rem;
+    top: 0;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url(http://img.m.duoku.com/cimages/img/24274/24274.png);
+  }
+
+  .person-introduction{
+    position: relative;
+    width: 10rem;
+    height: 15.46872rem;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url(http://img.m.duoku.com/cimages/img/24180/24180.jpg);
+  }
+  .video{
+    position: absolute;
+    width: 9.125rem;
+    height: 5.09375rem;
+    top: 3.046875rem;
+    left: 0.375rem;
+    border: 0.078125rem solid #000000;
+  }
+  .video video{
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+  }
+  .info{
+    position: absolute;
+    top:8.90625rem;
+    left: 0.375rem;
+  }
+  .info .info-name{
+    width: 3.4375rem;
+    height: 1.1875rem;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url(http://img.m.duoku.com/cimages/img/24234/24234.png)
+  }
+  .info .info-split{
+    border: 0.03125rem solid #5d595a;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .info .info-content{
+    width: 9.21875rem;
+    height: 1.15625rem;
+  }
+  .info .info-content .first-word{
+    display: inline-block;
+    background: #fe6a84;
+    color: #ffffff;
+    width: 0.78125rem;
+    height: 0.84375rem;
+    line-height: 0.94375rem;
+    font-size: 0.75rem;
+  }
+  .info .info-content .other-word{
+    display: inline-block;
+    width: 8.28125rem;
+    height: 0.84375rem;
+    font-size: 0.3125rem;
+  }
+  .lunbo {
+    position: relative;
+    top: 12.8125rem;
+  }
+  .lunbo .pre{
+    position: absolute;
+    display: inline-block;
+    width: 0.65625rem;
+    height: 0.9375rem;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url(http://img.m.duoku.com/cimages/img/24181/24181.png);
+    left: 0.21875rem;
+    top: 0.5rem;
+  }
+  .lunbo .next{
+    position: absolute;
+    display: inline-block;
+    width: 0.65625rem;
+    height: 0.9375rem;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url(http://img.m.duoku.com/cimages/img/24182/24182.png);
+    right: 0.21875rem;
+    top: 0.5rem;
+  }
+  .img-wrapper{
+    display: inline-block;
+    width: 7.4375rem;
+    height: 1.96875rem;
+    white-space: nowrap;
+    overflow: hidden;
+    left: 1.28125rem;
+    position: absolute;
+  }
+  .img-lists{
+    width:  44.62536rem;
+    height: 1.96875rem;
+    position: absolute;
+    left: -3.71878rem;
+  }
+  .list-item{
+    float: left;
+    width: 3.28125rem;
+    height: 1.8125rem;
+    margin: 0 0.140625rem 0 0.140625rem;
+    border: 0.078125rem solid #000000;
+  }
+  .active{
+    border: 0.078125rem solid #fe6a84;
+  }
+  .list-item img{
+    width: 3.28125rem;
+    height: 1.8125rem;
+  }
+  .world{
+    position: relative;
+    width: 10rem;
+    height: 15.46875rem;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url(http://img.m.duoku.com/cimages/img/24247/24247.jpg);
+  }
+  .world .world-img{
+    position: absolute;
+    top: 2.984375rem;
+    left: 0.21875rem;
+    width: 9.3125rem;
+    height: 5.90625rem;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    z-index: 10;
+    border: 0.078125rem solid #000000;
+    background-image: url(http://img.m.duoku.com/cimages/img/24248/24248.jpg);
+  }
+  .world .world-img-div{
+    position: absolute;
+    top: 2.890625rem;
+    left: 0.3925rem;
+    width: 9.3125rem;
+    height: 6rem;
+    z-index: 9;
+    border: 0.03125rem solid #fe6a84;
+  }
+  .world .world-name{
+    position: absolute;
+    top: 9.515625rem;
+    left: 7.125rem;
+    width: 1.9375rem;
+    height: 0.4375rem;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url(http://img.m.duoku.com/cimages/img/24258/24258.png);
+  }
+  .world .world-content{
+    font-size: 0.21875rem;
+    position: absolute;
+    top: 10.2rem;
+    left: 1rem;
+    width: 8.09375rem;
+    height: 5.2rem;
+    overflow: auto;
+  }
+  .world .world-content span{
+    font-size: 0.4rem;
+    width: 8.09375rem;
+    height: 5rem;
+    color: #ffffff;
+    background: #ec7386;
+  }
+  .footer{
+    position: relative;
+    width: 10rem;
+    height: 7.84375rem;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url(http://img.m.duoku.com/cimages/img/24257/24257.jpg);
+  }
+  .footer .footer-qrcode{
+    position: absolute;
+    width: 10rem;
+    height: 2.4rem;
+    top: 1rem;
+  }
+  .footer .qrcode-weibo{
+    position: absolute;
+    box-sizing: border-box;
+    width: 4.71875rem;
+    height: 2.109375rem;
+    left: 0.3rem;
+    top: 0.1rem;
+    color: #232323;
+    background: #ffffff;
+    border: 0.0625rem solid #000000;
+  }
+  .footer .qrcode-weibo img{
+    position: absolute;
+    width: 1.8125rem;
+    height: 1.8125rem;
+    top: 0.1rem;
+  }
+  .footer .qrcode-weibo .row-one{
+    font-size: 0.3125rem;
+    position: absolute;
+    left: 1.8rem;
+    top: 0.3rem;
+  }
+  .footer .qrcode-weibo .row-two{
+    position: absolute;
+    font-size: 0.3125rem;
+    top: 1rem;
+    left: 1.8rem;
+  }
+  .footer .qrcode-weibo .row-two img{
+    position: absolute;
+    width: 0.40625rem;
+    height: 0.3125rem;
+    top: 0.1rem;
+    padding: 0.15rem;
+    border: 0.01rem solid #000000;
+  }
+  .footer .qrcode-weibo .row-two span{
+    position: absolute;
+    left: 0.8rem;
+    width: 2rem;
+  }
+  .footer .qrcode-weibo-div{
+    position: absolute;
+    box-sizing: border-box;
+    width: 4.91875rem;
+    height: 2.309375rem;
+    left: 0.2rem;
+    border: 0.03125rem solid #fe6a84;
+  }
+  .footer .qrcode-img{
+    position: absolute;
+    box-sizing: border-box;
+    width: 2.125rem;
+    height: 2.125rem;
+    left: 5.475rem;
+    top: 0.1rem;
+    border: 0.0625rem solid #000000;
+  }
+  .footer .qrcode-img img{
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+  }
+  .footer .qrcode-img-div{
+    position: absolute;
+    box-sizing: border-box;
+    width: 2.325rem;
+    height: 2.325rem;
+    left: 5.375rem;
+    border: 0.03125rem solid #fe6a84;
+  }
+  .footer .qrcode-info{
+    position: absolute;
+    box-sizing: border-box;
+    width: 2rem;
+    height: 2.225rem;
+    left: 7.9rem;
+    top: 0.1rem;
+    font-size: 0.375rem;
+  }
+  .footer .qrcode-info .info-split{
+    width: 0.5rem;
+    height: 0.4rem;
+    border-bottom: 0.03125rem solid #ec7386;
+  }
+  .footer .qrcode-info .info-focusQ{
+    position: relative;
+    top: 0.15rem;
+    font-size: 0.3rem;
+    color: #ec7386;
+  }
+  .footer .footer-notice{
+    position: absolute;
+    box-sizing: border-box;
+    width: 10rem;
+    height: 2.225rem;
+    top: 4.5rem;
+    text-align: center;
+    font-size: 0.21875rem;
+    color: #7f7f7f;
+  }
+  .footer .footer-address{
+    position: absolute;
+    box-sizing: border-box;
+    width: 10rem;
+    height: 2.225rem;
+    top: 6rem;
+    text-align: center;
+    font-size: 0.21875rem;
+    color: #7f7f7f;
+  }
+</style>
+<body>
+<!-- <bgsound src="音乐地址" loop="-1"> -->
+<audio id="bgsound" src="http://img.m.duoku.com/cimages/img/promo/page/yxzg/media/bgm_op.mp3"
+       loop="loop" autoplay="autoplay" preload="auto"></audio>
+<section class="header" id="header">
+  <div class="header-mast"></div>
+  <div class="header-nav">
+    <div class="nav-icon"></div>
+    <div class="nav-info">
+      <div class="one">云想之歌</div>
+      <div class="two">菁英限号删档测试进行中</div>
+    </div>
+    <div class="nav-download"><div>下载</div></div>
+    <div class="nav-menu"></div>
+  </div>
+  <div class="menu-list" style="display: none;">
+    <a class="menu-list-item list-index" href="#header">首页</a>
+    <a class="menu-list-item list-intro" href="#person-introduction">卡牌介绍</a>
+    <a class="menu-list-item list-world" href="#world">世界观</a>
+  </div>
+  <div class="header-button"></div>
+  <div id="sound-btn" class="sound-btn sound-play">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div id="copyBtn" class="header-button-text" data-clipboard-text="796173410" data-clipboard-action="copy">
+    <p class="text-icon"></p>
+    <span class="text-content">加入Q群参与测试796173410</span>
+  </div>
+</section>
+<section class="person-introduction" id="person-introduction">
+  <div class="video">
+    <video id="person-video" muted
+           webkit-playsinline="true"
+           x-webkit-airplay="true"
+           x5-video-player-type="h5"
+           playsinline
+           src="http://imggms.bce.baidu-mgame.com/manage_video/5b70f5055f8eb9.48829001.mp4" autoplay controls></video>
+  </div>
+  <div class="info">
+    <div class="info-name"></div>
+    <div class="info-split"></div>
+    <div class="info-content"></div>
+  </div>
+  <div class="lunbo">
+    <div class="pre"></div>
+    <div class="img-wrapper">
+      <div class="img-lists">
+
+        <!-- <div class="list-item list-item-true active" index="1"><img src="http://img.m.duoku.com/cimages/img/24210/24210.png"></div>
+        <div class="list-item list-item-true" index="2"><img src="http://img.m.duoku.com/cimages/img/24211/24211.png"></div>
+        <div class="list-item list-item-true" index="3"><img src="http://img.m.duoku.com/cimages/img/24212/24212.png"></div>
+        <div class="list-item list-item-true" index="4"><img src="http://img.m.duoku.com/cimages/img/24216/24216.png"></div>
+        <div class="list-item list-item-true" index="5"><img src="http://img.m.duoku.com/cimages/img/24217/24217.png"></div>
+        <div class="list-item list-item-true" index="6"><img src="http://img.m.duoku.com/cimages/img/24218/24218.png"></div>
+        <div class="list-item list-item-true" index="7"><img src="http://img.m.duoku.com/cimages/img/24219/24219.png"></div>
+        <div class="list-item list-item-true" index="8"><img src="http://img.m.duoku.com/cimages/img/24220/24220.png"></div>
+        <div class="list-item list-item-true" index="9"><img src="http://img.m.duoku.com/cimages/img/24221/24221.png"></div>
+        <div class="list-item list-item-true" index="10"><img src="http://img.m.duoku.com/cimages/img/24222/24222.png"></div> -->
+
+      </div>
+    </div>
+    <div class="next"></div>
+  </div>
+</section>
+<section class="world" id="world">
+  <div class="world-img"></div>
+  <div class="world-img-div"></div>
+  <div class="world-name"></div>
+  <div class="world-content">
+    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>是</span>一座囊括所有教育设施的都市，其科技领先外界三十年以上，因此被称为“掌握着世界的过去和未来”。你作为一名新生，充满憧憬的入学第一天，就被校长摩西引领至秘密基地，因此获悉圣天学院的科技源自于「特异能量」的研究。在历史中某些普通人天生携带一种特殊能量，会成为当时的「特异点」，对周围产生影响。这种「特异能量」可被适当提取并善加利用。</p>
+    <p style="margin-top: 0.5rem;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;另有心怀不轨之徒对「特异能量」虎视眈眈，意图干涉历史。你必须帮助摩西利用时光机回到过去，寻找「特异者」，引导其行为回到正轨。每一位「特异者」在既定的历史进程中牺牲后，灵魂会通过「永时之扉」重生，你将培养他们恢复能量，成为对抗邪恶、平衡未来的力量。</p>
+  </div>
+</section>
+<footer class="footer">
+  <div class="footer-qrcode">
+    <div class="qrcode-weibo">
+      <img src="http://img.m.duoku.com/cimages/img/24255/24255.jpg" alt="">
+      <div class="weibo-content">
+        <span class="row-one">关注微博</span>
+        <span class="row-two"><img src="http://img.m.duoku.com/cimages/img/24254/24254.png" alt=""><span>扫二维码<br>关注官方微博</span></span>
+      </div>
+    </div>
+    <div class="qrcode-weibo-div"></div>
+    <div class="qrcode-img">
+      <img src="http://img.m.duoku.com/cimages/img/24256/24256.png" alt="">
+    </div>
+    <div class="qrcode-img-div"></div>
+    <div class="qrcode-info">
+      <div>官方QQ群<br>796173410</div>
+      <div class="info-split"></div>
+      <div class="info-focusQ">关注Q群</div>
+    </div>
+  </div>
+  <div class="footer-notice">
+    <div>抵制不良游戏 拒绝盗版游戏 注意自我保护 谨防受骗上当</div>
+    <div>适度游戏益脑 沉迷游戏伤身 合理安排时间 享受健康生活</div>
+  </div>
+  <div class="footer-address">
+    <div>©2016 天津多酷紫铜科技有限公司 津网稳许字[2014]1209-012号</div>
+    <div>文网游备字[2016]M-RPG6431 津ICP备14004638号-5</div>
+    <div>地址:北京市海淀区农大南路1号硅谷亮城4号楼3A层 电话 : 010-56623800</div>
+  </div>
+</footer>
+<div class="dialog-mast" style="display:none"></div>
+<div class="dialog-wrapper" style="display:none">
+  <div class="dialog-img">
+    <div class="close-btn"></div>
+    <div class="img-content">暂未开放，敬请期待！</div>
+  </div>
+</div>
+<script type="text/javascript" src="dist/mian.min.js"></script></body>
+<script src="http://img.m.duoku.com/cimages/img/h5/game/bdydnlq/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="http://img.m.baidu.com/cimages/img/promo/page/sgz-static/clip/clipboard.min.js"></script>
+<script>
+
+  function yxzgFunc () {
+    this.menuListIsShow = false;
+    this.index = 1;
+    this.timer;
+    this.firstLoad = true;
+    this.personIndex = ['Moses','Klamár','WangYi','EdwardBourne','YanadaKtsukage','GreenAusfield','Airythus','ShineHoof','BladeBickler','RicciRonove']
+    this.personInfo = {
+      Moses:{
+        name:'Moses',
+        nick:'摩西',
+        img:'http://img.m.duoku.com/cimages/img/24220/24220.png',
+        imgName:'http://img.m.duoku.com/cimages/img/24240/24240.png',
+        video:'http://imggms.bce.baidu-mgame.com/manage_video/5b7279afa8c115.52389915.mp4',
+        videoDefault:'http://img.m.duoku.com/cimages/img/24271/24271.jpg',
+        intro:'圣天学院的校长，负责发掘优秀人才协助「特异能量」的研究。温柔体贴善解人意，做事认真投入。'
+      },
+      Klamár:{
+        name:'Klamár',
+        nick:'卡尔玛',
+        img:'http://img.m.duoku.com/cimages/img/24217/24217.png',
+        imgName:'http://img.m.duoku.com/cimages/img/24237/24237.png',
+        video:'http://imggms.bce.baidu-mgame.com/manage_video/5b727a50407a49.49941769.mp4',
+        videoDefault:'http://img.m.duoku.com/cimages/img/24262/24262.jpg',
+        intro:'圣天学院的高材生，积极地参与修正历史的任务。高傲、爱管闲事，喜欢占据领导地位。'
+      },
+      WangYi:{
+        name:'Wang Yi',
+        nick:'王翼',
+        img:'http://img.m.duoku.com/cimages/img/24222/24222.png',
+        imgName:'http://img.m.duoku.com/cimages/img/24242/24242.png',
+        video:' http://imggms.bce.baidu-mgame.com/manage_video/5b727a944486c8.28664096.mp4',
+        videoDefault:'http://img.m.duoku.com/cimages/img/24263/24263.jpg',
+        intro:'秦末吴中郡的农民，后成为楚军先锋队队长。热血耿直，坦率倔强，能识别他人的谎言。'
+      },
+      EdwardBourne:{
+        name:'Edward Bourne',
+        nick:'爱德华',
+        img:'http://img.m.duoku.com/cimages/img/24211/24211.png',
+        imgName:'http://img.m.duoku.com/cimages/img/24233/24233.png',
+        video:'http://imggms.bce.baidu-mgame.com/manage_video/5b73df490432c0.31739808.mp4',
+        videoDefault:'http://img.m.duoku.com/cimages/img/24264/24264.jpg',
+        intro:'从孤儿到诈骗犯，又混入英国皇家空军成为王牌战斗机飞行员，擅长揣测别人的内心并作出应对。'
+      },
+      YanadaKtsukage:{
+        name:'Yanada Ktsukage',
+        nick:'梁田胜景',
+        img:'http://img.m.duoku.com/cimages/img/24219/24219.png',
+        imgName:'http://img.m.duoku.com/cimages/img/24239/24239.png',
+        video:'http://imggms.bce.baidu-mgame.com/manage_video/5b7a6837e44d54.53718491.mp4',
+        videoDefault:'http://img.m.duoku.com/cimages/img/24338/24338.jpg',
+        intro:'明智光秀的学生，亦是旗下得力大将之一。习惯行动优于思考，却经常在抉择时优柔寡断。'
+      },
+      GreenAusfield:{
+        name:'Green Ausfield',
+        nick:'格林',
+        img:'http://img.m.duoku.com/cimages/img/24216/24216.png',
+        imgName:'http://img.m.duoku.com/cimages/img/24236/24236.png',
+        video:'http://imggms.bce.baidu-mgame.com/manage_video/5b73df712d96e2.27634489.mp4',
+        videoDefault:'http://img.m.duoku.com/cimages/img/24266/24266.jpg',
+        intro:'天才电脑黑客，纽约最年轻的富翁。为人骄傲，自信心十足，不擅长真情沟通。'
+      },
+      Airythus:{
+        name:'Airythus',
+        nick:'艾瑞迪斯',
+        img:'http://img.m.duoku.com/cimages/img/24210/24210.png',
+        imgName:'http://img.m.duoku.com/cimages/img/24234/24234.png',
+        video:'http://imggms.bce.baidu-mgame.com/manage_video/5b73df7d033888.92003127.mp4',
+        videoDefault:'http://img.m.duoku.com/cimages/img/24267/24267.jpg',
+        intro:'斯巴达国王列奥尼达所青睐的年轻战士。拥有敏锐的观察力，说话一针见血，为实现目的可以不择手段。'
+      },
+      ShineHoof:{
+        name:'Shine Hoof',
+        nick:'闪蹄',
+        img:'http://img.m.duoku.com/cimages/img/24221/24221.png',
+        imgName:'http://img.m.duoku.com/cimages/img/24241/24241.png',
+        video:'http://imggms.bce.baidu-mgame.com/manage_video/5b73df88231d72.74153871.mp4',
+        videoDefault:'http://img.m.duoku.com/cimages/img/24268/24268.jpg',
+        intro:'苏族拉科塔部落的一员。率真并不愚昧盲目，愿意听取他人的想法，但认准目标后就一往直前。'
+      },
+      BladeBickler:{
+        name:'Blade Bickler',
+        nick:'布莱德',
+        img:'http://img.m.duoku.com/cimages/img/24212/24212.png',
+        imgName:'http://img.m.duoku.com/cimages/img/24235/24235.png',
+        video:'http://imggms.bce.baidu-mgame.com/manage_video/5b7a6840068834.29078869.mp4',
+        videoDefault:'http://img.m.duoku.com/cimages/img/24339/24339.jpg',
+        intro:'天资聪颖的技术宅及亿万富翁。太过正直而不懂变通。喜欢钻研高科技新技术，又爱保守的旧时装。'
+      },
+      RicciRonove:{
+        name:'Ricci Ronove',
+        nick:'李奇',
+        img:'http://img.m.duoku.com/cimages/img/24218/24218.png',
+        imgName:'http://img.m.duoku.com/cimages/img/24238/24238.png',
+        video:'http://imggms.bce.baidu-mgame.com/manage_video/5b7a6846bc9484.27836855.mp4',
+        videoDefault:'http://img.m.duoku.com/cimages/img/24340/24340.jpg',
+        intro:'因家道中落沦为佛罗伦萨盖尔菲派的打手，喜欢天文和观星，崇拜知识丰富的人。'
+      }
+    }
+
+  }
+  yxzgFunc.prototype.init = function () {
+    this.event()
+    this.initInfo(this.personIndex[0]);
+    var $imgLists = $('.img-lists');
+    $imgLists.empty();
+    var i = true;
+    var ii = 1;
+    $imgLists.append($('<div class="list-item"><img src="http://img.m.duoku.com/cimages/img/24222/24222.png"></div>'));
+    for (var o in this.personInfo) {
+      if (i) {
+        $imgLists.append('<div class="list-item list-item-true active" index="'+ii+'"><img src="'+this.personInfo[o].img+'"></div>');
+        i = false;
+      } else {
+        $imgLists.append('<div class="list-item list-item-true" index="'+ii+'"><img src="'+this.personInfo[o].img+'"></div>');
+      }
+      ii++;
+    }
+    $imgLists.append($('<div class="list-item"><img src="http://img.m.duoku.com/cimages/img/24210/24210.png"></div>'))
+  }
+  yxzgFunc.prototype.initInfo = function (name) {
+    var $content = $('.info .info-content');
+    var firstWord = $('<div class="first-word"></div>');
+    var otherWord = $('<div class="other-word"></div>');
+    firstWord.text(this.personInfo[name].intro.slice(0,1));
+    otherWord.text(this.personInfo[name].intro.slice(1));
+    $('#person-video').attr('src',this.personInfo[name].video)
+    $('#person-video').attr('poster',this.personInfo[name].videoDefault)
+    $('.info-name').css('background-image','url('+this.personInfo[name].imgName+')')
+    $content.empty();
+    $content.append(firstWord);
+    $content.append(otherWord);
+  }
+  yxzgFunc.prototype.event = function () {
+    var self = this;
+    var $wrapper = $(document.body)
+    $wrapper.on('click','.nav-menu',function(){
+      self.menuListIsShow = !self.menuListIsShow;
+      if(!self.menuListIsShow){
+        $('.menu-list').hide();
+      } else{
+        $('.menu-list').show();
+      }
+    })
+    $('#header').on('click','#copyBtn',function(){
+      document.execCommand('copy')
+    })
+    $('.dialog-wrapper').on('click','.close-btn',function(){
+      $('.dialog-mast').hide();
+      $('.dialog-wrapper').hide();
+    })
+    $('#header').on('click','.nav-download',function(){
+      $('.dialog-mast').show();
+      $('.dialog-wrapper').show();
+    })
+    $('.img-lists').on('click','.list-item',function(){
+      if (!$(this).hasClass('active')) {
+        self.dotIndex(true);
+        self.animation(-3.71878);
+      }
+    })
+    $('#header').on('click','.sound-btn',function(){
+      var audio = document.getElementById('bgsound');
+      if(audio.paused)                     {
+        audio.play();//audio.play();// 这个就是播放
+        $(this).addClass('sound-play')
+      }else{
+        audio.pause();// 这个就是暂停
+        $(this).removeClass('sound-play')
+      }
+    })
+    var pre = document.getElementsByClassName("pre")[0];
+    var next = document.getElementsByClassName("next")[0];
+    pre.onclick = function (e) {
+      self.dotIndex(false);
+      self.animation(3.71878);
+    }
+    next.onclick = function (e) {
+      self.dotIndex(true);
+      self.animation(-3.71878);
+    }
+  }
+  yxzgFunc.prototype.animation = function (offset){
+    var $lists = $(".img-lists");
+    var left = parseInt($lists.css('left').slice(0,$lists.css('left').indexOf("p")))/(75 * (document.documentElement.clientWidth / 750)) + offset;
+    if(left<-37.1878){
+      $lists.css('left',"-3.71878rem");
+    }
+    else if(left>-3.71878){
+      $lists.css('left',"-37.1878rem");
+    }
+    else{
+      $lists.css('left',left+"rem");
+    }
+  }
+  yxzgFunc.prototype.dotIndex = function (add){
+    if(add){
+      this.index++;
+    }
+    else{
+      this.index--;
+    }
+    if(this.index > 10){
+      this.index = 1;
+    }
+    if(this.index < 1){
+      this.index = 10;
+    }
+    this.initInfo(this.personIndex[this.index-1])
+    this.dotActive();
+  }
+  yxzgFunc.prototype.dotActive = function () {
+    var items = document.getElementsByClassName("list-item-true");
+    var len = items.length;
+    for(var i=0 ;i<len ;i++){
+      items[i].className = "list-item list-item-true";
+    }
+    for(var i=0;i<len;i++){
+      /*此处可以不用parseInt，当不用全等时*/
+      if(this.index === parseInt(items[i].getAttribute("index"))){
+        items[i].className = "list-item list-item-true active";
+      }
+    }
+  }
+
+  $(function(){
+    new yxzgFunc().init();
+    document.addEventListener('copy', function(e){
+      e.clipboardData.setData('text/plain', '796173410');
+      alert('复制成功，请去加入QQ群参与测试');
+      e.preventDefault(); // We want our data, not data from any selection, to be written to the clipboard
+    });
+    // var clipboard = new Clipboard("#copyBtn");
+    // clipboard.on('success', function(e) {
+    //     alert("已复制");
+    // });
+
+    // clipboard.on('error', function(e) {
+    //     alert("请重试");
+    // });
+
+    setTimeout(function(){
+      var audio = document.getElementById('bgsound');
+      audio.load();
+      audio.play();
+    },2000)
+  })
+  //--创建页面监听，等待微信端页面加载完毕 触发音频播放
+  document.addEventListener('DOMContentLoaded', function () {
+    function audioAutoPlay() {
+      var audio = document.getElementById('bgsound');
+      alert(audio)
+      audio.play();
+      document.addEventListener("WeixinJSBridgeReady", function () {
+        audio.play();
+      }, false);
+    }
+  });
+  var firstLoad = true;
+  document.addEventListener('touchstart', function () {
+    function audioAutoPlay() {
+      var audio = document.getElementById('bgsound');
+      audio.play();
+    }
+    if (firstLoad) {
+      audioAutoPlay();
+      firstLoad = false;
+    }
+  });
+</script>
+</html>

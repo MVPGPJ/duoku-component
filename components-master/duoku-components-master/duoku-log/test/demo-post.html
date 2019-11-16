@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script>
+    var _dklog = [];
+    _dklog.push({
+      page:'首页',
+      type: 'pv'
+    })
+    _dklog.action = 'activity_test';
+    _dklog.token = 'testtoken';
+    (function() {
+      var dk = document.createElement("script");
+      dk.src = "//ycimg.m.duoku.com/cimages/img/promo/js/sdk/duoku-log-yuyue.min.1.0.js";
+      //dk.src = "../src/duoku-log-yuyue.js";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(dk, s);
+    })();
+
+  </script>
+
+</head>
+<body>
+<button id="testId">支付</button>
+<script type="text/javascript">
+  let $btn = document.getElementById ('testId')
+  $btn.addEventListener ('click', function () {
+    _dklog.push({
+      origin:'支付按钮',
+      page:'首页',
+      type: 'click'
+    })
+  })
+</script>
+</body>
+</html>

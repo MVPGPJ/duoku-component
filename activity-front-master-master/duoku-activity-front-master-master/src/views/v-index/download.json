@@ -1,0 +1,39 @@
+// bukeyong
+var aa = {
+  'game_id': 14957237,
+  'game_name': '\u653b\u57ce\u63a0\u5730',
+  'packageid': 3818249,
+  'versioncode': 82,
+  'versionname': '4.5.0',
+  'download_inner': 'http://duokoo.baidu.com/game/?pageid=Hdkicssp&p_tag=1965452',
+  'download_inner_sz': 'http://gdown.baidu.com/data/wisegame/f874b431277373ad/gongchengluedi_82.apk',
+  'icon': 'https://ycimg.m.duoku.com/cimages/img/24915/24915.png',
+  'size': 154875043,
+  'package': 'com.regin.gcldnew.baidu',
+  'docid': 25192792,
+  'signmd5': 4048692928,
+  'type': 'game',
+  'downloadText': '\u4e0b\u8f7d',
+  'awardStatus': 3
+}
+
+//
+var bb = {
+  'game_id': 14957237,
+  'game_name': '\u653b\u57ce\u63a0\u5730',
+  'sname': '\u653b\u57ce\u63a0\u5730',
+  'packageid': 3818249,
+  'versioncode': 82,
+  'versionname': '4.5.0',
+  'download_inner': 'http://duokoo.baidu.com/game/?pageid=Hdkicssp&p_tag=1965452',
+  'download_inner_sz': 'http://gdown.baidu.com/data/wisegame/e47ea9a715426977/gongchengluedi_82.apk',
+  'icon': 'https://ycimg.m.duoku.com/cimages/img/24915/24915.png',
+  'size': 154875043,
+  'package': 'com.regin.gcldnew.baidu',
+  'docid': 25192792,
+  'signmd5': 4048692928,
+  'desc': '\u5c11\u65f6239999',
+  'type': 'game',
+  'downloadText': '\u4e0b\u8f7d',
+  'awardStatus': 3
+}

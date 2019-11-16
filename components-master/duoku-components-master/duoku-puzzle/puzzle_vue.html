@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    .puzzle ul {
+      display: block;
+      width: 600px;
+      height: 600px;
+    }
+
+    .puzzle ul li {
+      display: inline-block;
+      width: 190px;
+      height: 190px;
+      margin: 5px 5px auto auto;
+    }
+
+    .selected {
+      opacity: 0.5;
+    }
+    .img1 {
+      background-position: 0px -200px;
+    }
+
+    .img2 {
+      background-position: -200px -200px;
+    }
+
+    .img3 {
+      background-position: -400px -200px;
+    }
+
+    .img4 {
+      background-position: -168px -168px;
+    }
+
+    .img5 {
+      background-position: -336px -168px;
+    }
+
+    .img6 {
+      background-position: 0px -336px;
+    }
+
+    .img7 {
+      background-position: -168px -336px;
+    }
+
+    .img8 {
+      background-position: -336px -336px;
+    }
+
+    .img9 {
+      background-position: 0px 0px;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <div class="puzzle" id="puzzle">
+    <span>time:{{time}}</span>
+    <ul>
+      <li v-for="(o,key) in list" @click="move(key)" :key="key" :class="o.className"
+          :style="'background-image:url(' + bgUrl+ ');'">
+        {{o.className}} gg
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  var app = new Vue ({
+    el: '#app',
+    data: {
+      time:100,
+      lastIndex: '',
+      bgUrl: '1.png',
+      list: {
+        1: {
+          className: 'img1'
+        }
+        ,
+        2: {
+          className: 'img2'
+        }
+        ,
+        3: {
+          className: 'img3'
+        }
+        ,
+        4: {
+          className: 'img4'
+        }
+        ,
+        5: {
+          className: 'img5'
+        }
+        ,
+        6: {
+          className: 'img6'
+        }
+        ,
+        7: {
+          className: 'img7'
+        }
+        ,
+        8: {
+          className: 'img8'
+        }
+        ,
+        9: {
+          className: 'img9'
+        }
+      }
+    },
+    methods: {
+      clearSelected (){
+        for(let o in this.list){
+          this.list[o]['className'] = this.list[o]['className'].substring(0,4)
+        }
+      },
+     move (key) {
+        if (this.lastIndex && this.lastIndex !== key) {
+          let tmp = this.list[key];
+          this.list[key] = this.list[this.lastIndex]
+          this.list[this.lastIndex] = tmp;
+          if(this.isWin()){
+            alert('win')
+          }
+          this.clearSelected();
+          this.lastIndex = ''
+        } else {
+          this.list[key]['className'] +=' selected';
+          this.lastIndex = key
+        }
+      }
+      ,
+      isWin () {
+       var rs = true
+       for(let o in this.list){
+         let i = this.list[o]['className'].substring(3,1)
+         if(o !== i){
+           rs = false
+           break
+         }
+       }
+       return rs
+      },
+      setIndex () {
+        let $li = document.getElementById ('puzzle').getElementsByTagName ('li')
+        for (let i = 0; i < 9; i++) {
+          $li[i].setAttribute ('index', i + 1)
+        }
+      },
+      disorder () {
+       setInterval(()=>{
+         this.time --;
+       },1000)
+      }
+    }
+    ,
+    mounted: function () {
+      this.setIndex ()
+      this.disorder()
+    }
+  })
+</script>
+</body>
+</html>

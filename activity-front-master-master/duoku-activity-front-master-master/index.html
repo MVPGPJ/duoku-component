@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>ACTIVITY MASTER</title>
+  <script>
+    <%= htmlWebpackPlugin.options.viewportUnitsBuggyfill %>
+  </script>
+</head>
+<body >
+<div id="app" class="app"></div>
+
+<script>
+  window.onload = function () {
+    window.viewportUnitsBuggyfill.init ({
+      hacks: window.viewportUnitsBuggyfillHacks
+    })
+  }
+  var _dklog = []
+  _dklog.appid = 'activity_test';
+  (function () {
+    var dk = document.createElement ('script')
+    dk.src = '//ycimg.m.duoku.com/cimages/img/promo/js/sdk/duoku-log.min.1.0.2.js'
+    var s = document.getElementsByTagName ('script')[0]
+    s.parentNode.insertBefore (dk, s)
+  }) ()
+
+  ;(function () {
+    if (!/eruda|debug|test=true/.test (window.location) && localStorage.getItem ('active-eruda') != 'true') return
+    var script = document.createElement ('script')
+    script.src = '//ycimg.m.duoku.com/cimages/img/promo/gametemplate/common/js/eruda.js'
+    var s = document.getElementsByTagName ('script')[0]
+    script.onload = script.onreadystatechange = function () {
+      if (!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete') {
+        eruda.init ()
+        script.onload = script.onreadystatechange = null
+      }
+    }
+    s.parentNode.insertBefore (script, s)
+  }) ()
+
+  <%= htmlWebpackPlugin.options.serviceWorkerfill %>
+
+</script>
+</body>
+</html>

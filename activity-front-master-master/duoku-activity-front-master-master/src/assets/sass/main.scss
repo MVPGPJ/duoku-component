@@ -1,0 +1,92 @@
+@import "util.scss";
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+html * {
+  outline: none;
+  @include trip-padding-margin;
+  border: 0;
+  -webkit-text-size-adjust: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+body{
+  background: #68c687;
+  padding: 0;
+  margin: 0;
+}
+/* 去掉各 Table  cell 的边距并让其边重合 */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.hide {
+  display: none;
+}
+
+/* 清除浮动 */
+
+.clear {
+    clear: both;
+    height: 0;
+    line-height: 0;
+    font-size: 0
+}
+
+/* 去掉列表前的标识, li 会继承 */
+
+ul {
+    list-style: none;
+}
+
+/*95%的透明度*/
+
+.opacity-95 {
+    opacity: .95;
+}
+
+
+/*内容居中*/
+
+.text-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 默认不显示下划线*/
+
+ins,
+a,
+a:active,
+a:hover,
+a:visited {
+    text-decoration: none;
+    color: rgba(0, 0, 0, .6);
+}
+
+/* 扩大关闭按钮点击区域 */
+
+.btn-close {
+    background-size: 100%;
+    &::before {
+        content: '';
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        bottom: -20px;
+        left: -20px;
+    }
+}
+
+.modal{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.8);
+}

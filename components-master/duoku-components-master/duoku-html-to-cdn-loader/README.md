@@ -1,0 +1,1 @@
+提炼出html里面的静态资源(img,js,css)，上传到CDN

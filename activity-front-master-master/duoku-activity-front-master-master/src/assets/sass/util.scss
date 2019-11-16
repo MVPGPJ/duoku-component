@@ -1,0 +1,128 @@
+@import "_retina.scss";
+/*
+* @mixin
+*@param $url 图片地址
+* @param $el 添加背景图片的元素（class类名）
+* @param $bgsize   背景图片大小，默认100%；
+* 使用：在最顶层中直接引入 @include set-webp(unres-btn ,res-btn, png);
+*/
+@mixin set-webp($url,$bgWsize,$bgHsize){
+  [data-support-webp=false] & {
+      background: url('#{$url}') no-repeat;
+      background-size: $bgWsize $bgHsize;
+  }
+  [data-support-webp=true] &{
+      background: url('#{$url}@f_webp') no-repeat;
+      background-size: $bgWsize $bgHsize;
+  }
+}
+
+/*
+* @Functions
+* @description 根据dpr设置字体大小
+* @param $number Include units number(含单位字符的数值)
+* @return pure number(纯数字)
+*/
+@mixin font-dpr($font-size){
+  [data-dpr="1"] & {
+    font-size: $font-size/2;
+  }
+
+  [data-dpr="2"] & {
+    font-size: $font-size;
+  }
+
+  [data-dpr="3"] & {
+    font-size: $font-size*1.5;
+  }
+}
+
+/*
+*@Mixin 去除内、外边距
+*/
+@mixin trip-padding-margin{
+  padding:0;
+  margin:0;
+}
+
+@mixin commonBackground{
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+/*
+*@Mixin flex 左右、垂直居中
+*/
+@mixin flex-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*
+*@Mixin 满屏尺寸
+*/
+@mixin full-width-height{
+  width:100%;
+  height:100%;
+}
+
+/*
+*@Mixin 折行
+*/
+@mixin g-word-break{
+  word-break:break-all;
+  word-wrap:break-word;
+}
+
+@mixin animation_fix{
+  -webkit-backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-perspective: 1000;
+}
+
+@mixin text-ellipsis{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+@mixin click-shadow($borderRadius: 10px, $opacity: .2) {
+  position: relative;
+
+  &:active::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, $opacity);
+    border-radius: px2rem($borderRadius);
+  }
+}
+@mixin click-opacity($opacity: .2) {
+  &:active::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, $opacity);
+  }
+}
+
+/**
+ * 根据URL生成对应的支持和不支持WebP的样式
+ */
+@mixin webp ($url) {
+  @at-root [data-support-webp=true] & {
+    background-image: url($url + '@f_webp');
+  }
+  @at-root [data-support-webp=false] & {
+    background-image: url($url);
+  }
+}
