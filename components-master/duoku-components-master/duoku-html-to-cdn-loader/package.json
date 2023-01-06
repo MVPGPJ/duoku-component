@@ -20,7 +20,7 @@
   "author": "liutinghai",
   "license": "ISC",
   "devDependencies": {
-    "html-webpack-plugin": "^3.2.0",
+    "html-webpack-plugin": "^5.5.0",
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0"
   }
